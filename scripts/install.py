@@ -236,12 +236,13 @@ def fetch(src: str, dest: Path) -> None:
     raise SystemExit("取源失败：git 和 zip 都没成功。检查网络或改用 --link 指定本地路径。")
 
 
-def report(rep: dict) -> bool:
+def report(rep: dict, origin: str | None = None) -> bool:
     fm = rep["frontmatter"] or {}
     scripts_ok = bool(rep["scripts"]) and all(rep["scripts"].values())
     ok = bool(rep["exists"] and fm and not fm.get("errors") and scripts_ok)
     print()
-    print(f"  技能目录   {rep['skill_dir']}")
+    tail = f"（{origin}）" if origin else ""
+    print(f"  技能目录   {rep['skill_dir']}{tail}")
     if rep["is_link"]:
         print(f"  安装方式   目录联接 → {rep['link_target']}")
     elif rep["exists"]:
@@ -294,20 +295,42 @@ def cmd_install(args) -> None:
         raise SystemExit(1)
 
 
+def self_copy():
+    """脚本所在的那份副本（不解链接，保留调用者看到的路径）。
+
+    用 --check 时默认检查"我这份"，而不是默认技能目录——否则在干净机器上
+    从临时 clone 跑自检，会去检查一个根本不存在的位置，结论是假的。
+    """
+    p = Path(__file__).absolute().parent.parent
+    return p if (p / "SKILL.md").is_file() else None
+
+
+def check_target(args) -> tuple[Path, str | None]:
+    if args.skills_dir:
+        return Path(args.skills_dir).expanduser() / SKILL_NAME, "命令行指定"
+    me = self_copy()
+    default, _ = pick_skills_dir(None)
+    if me:
+        try:
+            same = me.resolve() == (default / SKILL_NAME).resolve()
+        except OSError:
+            same = False
+        # 只有当"我这份"不是默认安装位置时才加标注，否则输出会啰嗦
+        return me, (None if same else "脚本所在副本，非默认技能目录")
+    return default / SKILL_NAME, None
+
+
 def cmd_check(args) -> None:
-    skills_dir, label = pick_skills_dir(args.skills_dir)
-    dest = Path(args.skills_dir).expanduser() / SKILL_NAME if args.skills_dir else skills_dir / SKILL_NAME
+    dest, origin = check_target(args)
     RESULT["skill_dir"] = str(dest)
-    rep = inspect(dest)
     RESULT["action"] = "check"
-    RESULT["ok"] = report(rep)
+    RESULT["ok"] = report(inspect(dest), origin)
     if not RESULT["ok"]:
         raise SystemExit(1)
 
 
 def cmd_update(args) -> None:
-    skills_dir, _ = pick_skills_dir(args.skills_dir)
-    dest = skills_dir / SKILL_NAME
+    dest, origin = check_target(args)
     RESULT["skill_dir"] = str(dest)
     real = Path(link_target(dest)) if is_link(dest) else dest
     if not (real / ".git").is_dir():
@@ -318,7 +341,7 @@ def cmd_update(args) -> None:
         raise SystemExit(f"更新失败：{(r.stderr or '').strip()[:300]}")
     RESULT["action"] = "update"
     say((r.stdout or "").strip()[:500] or "已是最新")
-    RESULT["ok"] = report(inspect(dest))
+    RESULT["ok"] = report(inspect(dest), origin)
 
 
 def cmd_uninstall(args) -> None:
@@ -356,7 +379,7 @@ def main() -> None:
     ap.add_argument("--link", metavar="本地仓库路径", help="用目录联接接入已有 clone，不复制")
     ap.add_argument("--repo", default=DEFAULT_REPO, help=f"仓库地址，默认 {DEFAULT_REPO}")
     g = ap.add_mutually_exclusive_group()
-    g.add_argument("--check", action="store_true", help="只体检，不改动任何文件")
+    g.add_argument("--check", action="store_true", help="只体检，不改动任何文件（默认检查脚本所在副本）")
     g.add_argument("--update", action="store_true", help="git pull 更新已安装的技能")
     g.add_argument("--uninstall", action="store_true", help="卸载（只摘链接，不删目标仓库）")
     ap.add_argument("--force-real-dir", action="store_true", help="卸载时允许删除实体目录（危险）")

@@ -36,6 +36,8 @@ python "<技能目录>/video-transcript/scripts/install.py" --check --json
 
 这个检查做三件事：目录是否可达、`SKILL.md` 的 frontmatter 能否解析、两个核心脚本是否在位。它还会顺手修掉 `\---` 这种被格式化工具体坏的首行。
 
+不带 `--skills-dir` 时，它检查的是**脚本所在的那份副本**，不是别处的安装。所以在临时目录里 clone 完直接自检也不会误报成「默认技能目录很健康」。
+
 ---
 
 ## 3. 生效
