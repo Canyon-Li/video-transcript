@@ -95,6 +95,8 @@ python scripts/format_transcript.py ./_src/asr_raw.txt --merge
 
 ## 目录
 
+- `INSTALL.md` — 给 agent 的安装契约（装哪、怎么验、怎么汇报）
+- `scripts/install.py` — 安装器：克隆 / 目录联接 / 自检 / 更新 / 卸载
 - `scripts/bili_fetch.py` — B站取源：字幕优先，无字幕下载音轨
 - `scripts/format_transcript.py` — 转写/字幕文本统一格式化
 - `references/platforms.md` — 各平台取源分诊表与命令

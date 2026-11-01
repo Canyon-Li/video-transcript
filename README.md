@@ -10,6 +10,8 @@
 
 大部分「视频转文字」的做法是一上来就把音频丢给语音识别。结果是人名、厂牌、数字全错，却读起来很顺——**这种顺，比错更危险**。这个 skill 把顺序倒过来：先找字幕（直取，准确率最高），找不到才转写，转完按错误类型分档处理，最后才交付。
 
+安装只要一句话，把仓库地址发给你的 agent 就行：[一键安装](#一键安装把这句话发给你的-agent)。
+
 ## 真实输出
 
 一条命令完成取源判断与音轨落地：
@@ -56,23 +58,73 @@ META=...\meta.json
 
 判断依据不足就降一档。**改错了比不改更糟**，用户核对时会把错误当成事实。
 
-## 安装与首次使用
+## 一键安装：把这句话发给你的 agent
 
-放到技能目录即可，不需要装依赖：
-
-```powershell
-# Windows：目录联接，保持仓库独立更新
-New-Item -ItemType Junction `
-  -Path "$env:USERPROFILE\.workbuddy\skills\video-transcript" `
-  -Target "<本仓库路径>"
+```text
+安装这个技能：https://github.com/Canyon-Li/video-transcript
+克隆到你的技能目录，跑一下自检，装完告诉我路径。
 ```
+
+一次真实往返长这样：
+
+> **你**：安装这个技能 https://github.com/Canyon-Li/video-transcript
+>
+> **agent**：已克隆到 `~/.workbuddy/skills/video-transcript`，自检通过——`SKILL.md` 能解析，两个脚本在位。重开一次会话就能触发。
+
+agent 实际做四步：克隆 → 跑 `install.py --check --json` → 读返回的 JSON → 按结果汇报。完整契约写在 [`INSTALL.md`](./INSTALL.md)，agent 读它一个文件就够，不需要从这份 README 里猜。
+
+技能目录按客户端取：WorkBuddy 是 `~/.workbuddy/skills`，Claude Code 是 `~/.claude/skills`。
+
+### 不用 agent 也行
 
 ```bash
-# macOS / Linux
-ln -s "<本仓库路径>" ~/.workbuddy/skills/video-transcript
+git clone --depth 1 https://github.com/Canyon-Li/video-transcript.git ~/.workbuddy/skills/video-transcript
 ```
 
-之后在对话里直接给链接就会触发：
+### 自检
+
+```bash
+python ~/.workbuddy/skills/video-transcript/scripts/install.py --check
+```
+
+```text
+  技能目录   C:\Users\李生\.workbuddy\skills\video-transcript
+  安装方式   目录联接 → \\?\D:\Desktop\git\skills\video-transcript
+  SKILL.md   OK  name=video-transcript
+  bili_fetch.py         OK
+  format_transcript.py  OK
+
+  状态：可用
+```
+
+可用的判据是三件事同时成立：目录可达、frontmatter 能解析、两个核心脚本在位。缺一项就退出码 1 并写明原因——**不要只看目录存在就当装好了**。
+
+### 仓库想放在别处
+
+自己维护 clone（比如放在 `D:\git\video-transcript`）时，用目录联接接进来，之后 `git pull` 无需重装：
+
+```powershell
+python scripts/install.py --link D:\git\video-transcript
+```
+
+Windows 用 junction（不需管理员权限），macOS/Linux 用符号链接，失败才降级为复制。
+
+### 更新与卸载
+
+```bash
+python scripts/install.py --update      # git pull --ff-only
+python scripts/install.py --uninstall   # 只摘链接，目标仓库不动
+```
+
+卸载只移除链接本身。若目标位置是实体目录，会拒绝删除并提示加 `--force-real-dir`——避免把真实仓库连着一起删掉。
+
+### 没有 git
+
+`install.py` 会自动降级为下载 zip 解压，不需要 git 也能装。
+
+## 首次使用
+
+装完重开会话，在对话里直接给链接就会触发：
 
 > 帮我把这个视频的文字提取出来：`https://www.bilibili.com/video/BV...`
 
@@ -90,6 +142,8 @@ python scripts/format_transcript.py ./_src/asr_raw.txt --merge
 | 路径 | 作用 |
 | --- | --- |
 | `SKILL.md` | 主流程与四条硬原则 |
+| `INSTALL.md` | 给 agent 的安装契约：装哪、怎么验、怎么汇报 |
+| `scripts/install.py` | 安装器：克隆 / 联接 / 自检 / 更新 / 卸载，纯标准库 |
 | `scripts/bili_fetch.py` | B 站取源：探字幕、下音轨、写 meta，纯标准库 |
 | `scripts/format_transcript.py` | ASR / 字幕文本统一格式化，附语速体检 |
 | `references/platforms.md` | 各平台取源分诊表与破障命令 |

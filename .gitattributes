@@ -1,0 +1,9 @@
+# 统一 LF：SKILL.md 的 frontmatter 若带 \r，部分加载器会解析失败
+* text=auto eol=lf
+
+*.py  text eol=lf
+*.md  text eol=lf
+*.sh  text eol=lf
+
+*.svg  text eol=lf
+*.png  binary
