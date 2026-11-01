@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360"
+     role="img" aria-labelledby="heroTitle heroDesc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <title id="heroTitle">video-transcript — 把视频链接变成可用的文字稿</title>
+  <desc id="heroDesc">左侧为项目名称与定位：字幕优先、零转码依赖、转写后强制校对，支持 B 站、YouTube、播客与本地文件。右侧为真实产出形态：一段音轨波形经语音转写后变成带时间戳的文字稿。</desc>
+
+  <rect width="1200" height="360" rx="24" fill="#FAF7F0" stroke="#E6DECD" stroke-width="1"/>
+
+  <g id="title-block">
+    <text x="64" y="78" font-size="18" letter-spacing="3" fill="#8A8375">SKILL · 视频转文字</text>
+    <text x="64" y="148" font-size="56" font-weight="600" fill="#1C1A17">video-transcript</text>
+    <text x="64" y="204" font-size="30" fill="#3D3833">把视频链接变成可用的文字稿</text>
+    <text x="64" y="250" font-size="19" fill="#8A8375">字幕优先 · 零转码依赖 · 转写后强制校对</text>
+  </g>
+
+  <g id="source-tags">
+        <rect x="64" y="284" width="61" height="34" rx="17" fill="#F2EDE1" stroke="#E6DECD" stroke-width="1"/>
+    <text x="94" y="306" font-size="18" fill="#6E6A61" text-anchor="middle">B站</text>
+    <rect x="137" y="284" width="101" height="34" rx="17" fill="#F2EDE1" stroke="#E6DECD" stroke-width="1"/>
+    <text x="188" y="306" font-size="18" fill="#6E6A61" text-anchor="middle">YouTube</text>
+    <rect x="250" y="284" width="68" height="34" rx="17" fill="#F2EDE1" stroke="#E6DECD" stroke-width="1"/>
+    <text x="284" y="306" font-size="18" fill="#6E6A61" text-anchor="middle">播客</text>
+    <rect x="330" y="284" width="104" height="34" rx="17" fill="#F2EDE1" stroke="#E6DECD" stroke-width="1"/>
+    <text x="382" y="306" font-size="18" fill="#6E6A61" text-anchor="middle">本地文件</text>
+  </g>
+
+  <g id="output-proof">
+    <rect x="720" y="48" width="416" height="270" rx="18" fill="#FFFFFF" stroke="#E6DECD" stroke-width="1"/>
+    <text x="748" y="84" font-size="18" fill="#8A8375">音轨 → 文字稿</text>
+        <rect x="748.0" y="129.0" width="8" height="10" rx="3" fill="#D8CEB7"/>
+    <rect x="761.0" y="125.0" width="8" height="18" rx="3" fill="#D8CEB7"/>
+    <rect x="774.1" y="121.0" width="8" height="26" rx="3" fill="#D8CEB7"/>
+    <rect x="787.1" y="117.0" width="8" height="34" rx="3" fill="#D8CEB7"/>
+    <rect x="800.1" y="123.0" width="8" height="22" rx="3" fill="#D8CEB7"/>
+    <rect x="813.2" y="114.0" width="8" height="40" rx="3" fill="#D8CEB7"/>
+    <rect x="826.2" y="119.0" width="8" height="30" rx="3" fill="#D8CEB7"/>
+    <rect x="839.3" y="126.0" width="8" height="16" rx="3" fill="#D8CEB7"/>
+    <rect x="852.3" y="122.0" width="8" height="24" rx="3" fill="#D8CEB7"/>
+    <rect x="865.3" y="112.0" width="8" height="44" rx="3" fill="#D8CEB7"/>
+    <rect x="878.4" y="116.0" width="8" height="36" rx="3" fill="#D8CEB7"/>
+    <rect x="891.4" y="124.0" width="8" height="20" rx="3" fill="#D8CEB7"/>
+    <rect x="904.4" y="128.0" width="8" height="12" rx="3" fill="#D8CEB7"/>
+    <rect x="917.5" y="120.0" width="8" height="28" rx="3" fill="#D8CEB7"/>
+    <rect x="930.5" y="115.0" width="8" height="38" rx="3" fill="#D8CEB7"/>
+    <rect x="943.6" y="121.0" width="8" height="26" rx="3" fill="#D8CEB7"/>
+    <rect x="956.6" y="127.0" width="8" height="14" rx="3" fill="#D8CEB7"/>
+    <rect x="969.6" y="118.0" width="8" height="32" rx="3" fill="#D8CEB7"/>
+    <rect x="982.7" y="111.0" width="8" height="46" rx="3" fill="#D8CEB7"/>
+    <rect x="995.7" y="119.0" width="8" height="30" rx="3" fill="#D8CEB7"/>
+    <rect x="1008.7" y="125.0" width="8" height="18" rx="3" fill="#D8CEB7"/>
+    <rect x="1021.8" y="122.0" width="8" height="24" rx="3" fill="#D8CEB7"/>
+    <rect x="1034.8" y="116.0" width="8" height="36" rx="3" fill="#D8CEB7"/>
+    <rect x="1047.9" y="124.0" width="8" height="20" rx="3" fill="#D8CEB7"/>
+    <rect x="1060.9" y="129.0" width="8" height="10" rx="3" fill="#D8CEB7"/>
+    <rect x="1073.9" y="126.0" width="8" height="16" rx="3" fill="#D8CEB7"/>
+    <rect x="1087.0" y="120.0" width="8" height="28" rx="3" fill="#D8CEB7"/>
+    <rect x="1100.0" y="123.0" width="8" height="22" rx="3" fill="#D8CEB7"/>
+    <line x1="875.3" y1="102" x2="875.3" y2="166" stroke="#B23A2A" stroke-width="2" stroke-linecap="round"/>
+    <line x1="748" y1="188" x2="1108" y2="188" stroke="#E6DECD" stroke-width="1"/>
+        <text x="748" y="216" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#A79D8A">00:21</text>
+    <text x="812" y="216" font-size="18" fill="#2E2A25">请播放鱼丁糸的复刻版</text>
+    <text x="748" y="248" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#A79D8A">00:30</text>
+    <text x="812" y="248" font-size="18" fill="#2E2A25">要梳理这件事情的经过</text>
+    <text x="748" y="280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#A79D8A">00:57</text>
+    <text x="812" y="280" font-size="18" fill="#2E2A25">青峰当时的态度就很暧昧</text>
+  </g>
+</svg>

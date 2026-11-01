@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="236" viewBox="0 0 1200 236"
+     role="img" aria-labelledby="wfTitle wfDesc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <title id="wfTitle">video-transcript 工作流</title>
+  <desc id="wfDesc">五步流程：判定来源、探测字幕轨（有则直取）、取音轨（无字幕时）、语音转写、校对与交付。第二步是优先分叉点。</desc>
+
+  <rect width="1200" height="236" rx="24" fill="#FAF7F0" stroke="#E6DECD" stroke-width="1"/>
+  <text x="44" y="44" font-size="18" letter-spacing="3" fill="#8A8375">WORKFLOW</text>
+
+  <g id="step-01">
+    <rect x="44" y="60" width="196" height="152" rx="14" fill="#FFFFFF" stroke="#E6DECD" stroke-width="1"/>
+    <text x="62" y="96" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#A79D8A">01</text>
+    <text x="62" y="134" font-size="26" font-weight="600" fill="#1C1A17">判定来源</text>
+    <text x="62" y="174" font-size="20" fill="#6E6A61">链接或本地文件</text>
+  </g>
+
+  <g id="step-02">
+    <rect x="273" y="60" width="196" height="152" rx="14" fill="#FFFFFF" stroke="#B23A2A" stroke-width="1.5"/>
+    <text x="291" y="96" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#B23A2A">02</text>
+    <text x="291" y="134" font-size="26" font-weight="600" fill="#1C1A17">探字幕</text>
+    <text x="291" y="174" font-size="20" fill="#6E6A61">有就直接取走</text>
+  </g>
+
+  <g id="step-03">
+    <rect x="502" y="60" width="196" height="152" rx="14" fill="#FFFFFF" stroke="#E6DECD" stroke-width="1"/>
+    <text x="520" y="96" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#A79D8A">03</text>
+    <text x="520" y="134" font-size="26" font-weight="600" fill="#1C1A17">取音轨</text>
+    <text x="520" y="174" font-size="20" fill="#6E6A61">无字幕才走这步</text>
+  </g>
+
+  <g id="step-04">
+    <rect x="731" y="60" width="196" height="152" rx="14" fill="#FFFFFF" stroke="#E6DECD" stroke-width="1"/>
+    <text x="749" y="96" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#A79D8A">04</text>
+    <text x="749" y="134" font-size="26" font-weight="600" fill="#1C1A17">语音转写</text>
+    <text x="749" y="174" font-size="20" fill="#6E6A61">单次上限 5 小时</text>
+  </g>
+
+  <g id="step-05">
+    <rect x="960" y="60" width="196" height="152" rx="14" fill="#FFFFFF" stroke="#E6DECD" stroke-width="1"/>
+    <text x="978" y="96" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#A79D8A">05</text>
+    <text x="978" y="134" font-size="26" font-weight="600" fill="#1C1A17">校对交付</text>
+    <text x="978" y="174" font-size="20" fill="#6E6A61">专名分档处理</text>
+  </g>
+
+  <g id="connectors" fill="none" stroke="#C4BAA5" stroke-width="1.5">
+    <path d="M240 136 H266" marker-end="url(#wfArrow)"/>
+    <path d="M469 136 H495" marker-end="url(#wfArrow)"/>
+    <path d="M698 136 H724" marker-end="url(#wfArrow)"/>
+    <path d="M927 136 H953" marker-end="url(#wfArrow)"/>
+  </g>
+  <defs>
+    <marker id="wfArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#C4BAA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+</svg>
