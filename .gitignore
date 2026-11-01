@@ -1,0 +1,14 @@
+# 本地预览临时产物（README 渲染验收用）
+.preview/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# 转写任务中间文件（音轨、原始 ASR 输出）
+_work/
+*.m4a
+*.m4s
+*.mp3
+*.wav
